@@ -24,7 +24,7 @@
 <meta name="author" content="Kate Hertweck, Damien Irving, Luke Johnston, Joel Ostblom, Charlotte Wickham, Ian Flores Siaca, and Greg Wilson" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -815,7 +815,7 @@ that none have attracted enough users to displace it.
 If you would like to explore them,
 check out <a href="https://ropenscilabs.github.io/drake-manual/">drake</a> for R.
 If you want to go deeper,
-<span class="citation">(Smith, <a href="references.html#ref-Smit2011" role="doc-biblioref">2011</a>)</span> describes the design and implementation of several build tools.</p>
+<span class="citation">(<a href="references.html#ref-Smit2011" role="doc-biblioref">Smith, 2011</a>)</span> describes the design and implementation of several build tools.</p>
 </blockquote>
 <div id="setting-up" class="section level3" number="7.0.1">
 <h3><span class="header-section-number">7.0.1</span> Setting Up</h3>
@@ -852,7 +852,7 @@ but each command <em>must</em> be indented by a single tab character:
 we can’t use spaces or a mix of spaces and tabs.
 In this rule,
 the action is “run <code>bin/countwords.py</code> on the raw data file
-and put the output in a CSV file in the <code>results</code> directory”.</p>
+and put the output in a CSV file in the <code>results</code> directory.”</p>
 <p>To test our rule, run this command in the shell:</p>
 <pre class="shell"><code>$ make</code></pre>
 <p>Make automatically looks for a file called <code>Makefile</code>
@@ -1051,7 +1051,7 @@ What <em>is</em> required is using parentheses to refer to the variable,
 i.e.,
 to use <code>$(NAME)</code> and not <code>$NAME</code>.
 For historical reasons,
-Make interprets <code>$NAME</code> to be a “variable called <code>N</code> followed by the three characers ‘AME’”,
+Make interprets <code>$NAME</code> to be a “variable called <code>N</code> followed by the three characers ‘AME’,”
 If no variable called <code>N</code> exists,
 <code>$NAME</code> becomes <code>AME</code>,
 which is almost certainly not what we want.</p>
@@ -1069,7 +1069,7 @@ we should write a generic rule that will produce a CSV file for any book.
 To do this,
 we need to understand Make’s <a href="glossary.html#automatic-variable-make">automatic variables</a>.
 The first step is to use the very cryptic expression <code>$@</code> in the rule’s action
-to mean “the target of the rule”.
+to mean “the target of the rule.”
 With it,
 we can replace this:</p>
 <pre class="make"><code># Regenerate results for &quot;Moby Dick&quot;
@@ -1097,7 +1097,7 @@ When Make expands the action,
 the resulting command tries to process the program as if it were a data file:</p>
 <pre class="shell"><code>python bin/countwords.py data/moby_dick.txt bin/countwords.py &gt; results/moby_dick.csv</code></pre>
 <p>Make solves this problem with another automatic variable <code>$&lt;</code>,
-which mean “the first prerequisite”.
+which mean “the first prerequisite.”
 Using it lets us rewrite our rule as:</p>
 <pre class="make"><code># Regenerate results for &quot;Jane Eyre&quot;
 results/moby_dick.csv : data/moby_dick.txt $(COUNT)
@@ -1256,7 +1256,7 @@ particularly as we start to add more steps like merging data files and generatin
 </div>
 <div id="automate-doc" class="section level2" number="7.9">
 <h2><span class="header-section-number">7.9</span> How can I document my Makefile?</h2>
-<p>Every well-behaved program tells people how to use it <span class="citation">(Taschuk and Wilson, <a href="references.html#ref-Tasc2017" role="doc-biblioref">2017</a>)</span>.
+<p>Every well-behaved program tells people how to use it <span class="citation">(<a href="references.html#ref-Tasc2017" role="doc-biblioref">Taschuk and Wilson, 2017</a>)</span>.
 If we run <code>make --help</code>,
 for example,
 we get a long list of options that Make understands.</p>
@@ -1353,7 +1353,7 @@ and that the final result should be regenerated if the program used to create it
 One difference between the action in this rule and the actions we’ve seen before
 is that this action uses <code>$(RESULTS)</code> directly instead of an automatic variable.
 We have written the rule this way because
-there isn’t an automatic variable that means “all but the last prerequisite”,
+there isn’t an automatic variable that means “all but the last prerequisite,”
 so there’s no way to use automatic variables that wouldn’t result in us trying to process our program.</p>
 </div>
 <div id="automate-summary" class="section level2" number="7.11">

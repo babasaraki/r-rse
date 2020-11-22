@@ -24,7 +24,7 @@
 <meta name="author" content="Kate Hertweck, Damien Irving, Luke Johnston, Joel Ostblom, Charlotte Wickham, Ian Flores Siaca, and Greg Wilson" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -687,7 +687,7 @@ Once our change is made,
 <code>years.sh</code> should contain:</p>
 <pre class="text"><code>cut -d , -f 2 $1 | uniq</code></pre>
 <p>Inside a shell script,
-<code>$1</code> means “the first argument on the command line”.
+<code>$1</code> means “the first argument on the command line.”
 We can now run our script like this:</p>
 <pre class="shell"><code>$ bash years.sh cleaned/bellambi_temp.csv</code></pre>
 <p>and get exactly the same output as before,
@@ -783,7 +783,7 @@ but we also often want to select lines that contain certain values.
 This operation is called <a href="glossary.html#filter">filtering</a> When we are working with database tables or dataframes,
 and in the shell,
 we usually do it using a command called <code>grep</code>.
-The name comes from “global regular expression print”,
+The name comes from “global regular expression print,”
 which was a common sequence of operations in early Unix text editors.
 To show how <code>grep</code> works,
 we will use a file that contains three haikus
@@ -880,7 +880,7 @@ which numbers the lines that match:</p>
 <p>Another is <code>-i</code>,
 which does case-insensitive matching:</p>
 <p>We can combine options (i.e. flags) as we do with other Unix commands.
-For example, let’s find the lines that contain the word “the”. We can combine
+For example, let’s find the lines that contain the word “the.” We can combine
 the option <code>-w</code> to find the lines that contain the word “the” and <code>-n</code> to number the lines that match:</p>
 <pre class="shell"><code>$ grep -i to haiku.txt</code></pre>
 <pre class="text"><code>You bring fresh toner.
@@ -929,7 +929,7 @@ database queries,
 online search engines,
 and most text editors (though not Nano—its creators wanted to keep it as small as possible).
 A wide range of tutorials are available online,
-and <span class="citation">Goyvaerts and Levithan (<a href="references.html#ref-Goyv2012" role="doc-biblioref">2012</a>)</span> is a useful companion if you need to go further.</p>
+and <span class="citation"><a href="references.html#ref-Goyv2012" role="doc-biblioref">Goyvaerts and Levithan</a> (<a href="references.html#ref-Goyv2012" role="doc-biblioref">2012</a>)</span> is a useful companion if you need to go further.</p>
 </div>
 <div id="bash-advanced-find" class="section level2" number="3.5">
 <h2><span class="header-section-number">3.5</span> How can I find files?</h2>
@@ -1116,7 +1116,7 @@ as <code>./analyze</code> if we are in <code>/Users/amira</code>).</p>
 <p>Let’s show the value of the variable <code>HOME</code>:</p>
 <pre class="shell"><code>$ echo HOME</code></pre>
 <pre class="text"><code>HOME</code></pre>
-<p>Whoops: this just prints “HOME”, which isn’t what we wanted
+<p>Whoops: this just prints “HOME,” which isn’t what we wanted
 (though it is what we asked for).
 Let’s try this instead:</p>
 <pre class="shell"><code>$ echo $HOME</code></pre>
@@ -1129,7 +1129,7 @@ This works just like wildcards:
 the shell does the replacement before running the program we’ve asked for.
 Thanks to this expansion, what we actually run is <code>echo /Users/amira</code>,
 which displays the right thing.</p>
-<p>Creating a variable is easy—we just assign a value to a name using “=”,
+<p>Creating a variable is easy—we just assign a value to a name using “=,”
 and put quotes around the value if it contains spaces or special characters:</p>
 <pre class="shell"><code>$ DEPARTMENT=&quot;Library Science&quot;
 $ echo $DEPARTMENT</code></pre>
@@ -1142,7 +1142,7 @@ $ echo $DEPARTMENT</code></pre>
 we can put commands to do this in a file called <code>.bashrc</code> in our home directory.
 (The ‘.’ character at the front prevents <code>ls</code> from listing this file
 unless we specifically ask it to using <code>-a</code>.
-The “rc” at the end is an abbreviation for “run commands”,
+The “rc” at the end is an abbreviation for “run commands,”
 which meant something really important decades ago,
 and is now just a convention everyone follows without understanding why.)
 For example,
@@ -1176,7 +1176,7 @@ alias cp=&#39;cp -v&#39;
 # and prompt if trying to remove move than three files
 alias rm=&#39;rm -Iv&#39;</code></pre>
 <p>We can find interesting suggestions for other aliases
-by searching online for “sample bashrc”.</p>
+by searching online for “sample bashrc.”</p>
 </div>
 <div id="bash-advanced-summary" class="section level2" number="3.7">
 <h2><span class="header-section-number">3.7</span> Summary</h2>

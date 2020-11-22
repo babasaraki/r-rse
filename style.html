@@ -24,7 +24,7 @@
 <meta name="author" content="Kate Hertweck, Damien Irving, Luke Johnston, Joel Ostblom, Charlotte Wickham, Ian Flores Siaca, and Greg Wilson" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -601,7 +601,7 @@ code span.wa { color: #008000; font-weight: bold; } /* Warning */
             <section class="normal" id="section-">
 <div id="style" class="section level1" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Code Style, Review, and Refactoring</h1>
-<p>To paraphrase <span class="citation">Dobzhansky (<a href="references.html#ref-Dobz1973" role="doc-biblioref">1973</a>)</span>,
+<p>To paraphrase <span class="citation"><a href="references.html#ref-Dobz1973" role="doc-biblioref">Dobzhansky</a> (<a href="references.html#ref-Dobz1973" role="doc-biblioref">1973</a>)</span>,
 nothing in software development makes sense except in light of human psychology.
 This is particularly true when we look at programming style.
 Computers don’t need to understand programs in order to execute them,
@@ -612,15 +612,15 @@ the easier it is to find things and make sense of them.</p>
 is therefore not getting twice as much code written,
 but having code reviewed.
 Study after study over more than 40 years has shown that code review is the most effective way to find bugs in software
-<span class="citation">Fagan (<a href="references.html#ref-Faga1976" role="doc-biblioref">1976</a>)</span>,<span class="citation">Fagan (<a href="references.html#ref-Faga1986" role="doc-biblioref">1986</a>)</span>,<span class="citation">Cohen (<a href="references.html#ref-Cohe2010" role="doc-biblioref">2010</a>)</span><span class="citation">Bacchelli and Bird (<a href="references.html#ref-Bacc2013" role="doc-biblioref">2013</a>)</span>.
+<span class="citation"><a href="references.html#ref-Faga1976" role="doc-biblioref">Fagan</a> (<a href="references.html#ref-Faga1976" role="doc-biblioref">1976</a>)</span>,<span class="citation"><a href="references.html#ref-Faga1986" role="doc-biblioref">Fagan</a> (<a href="references.html#ref-Faga1986" role="doc-biblioref">1986</a>)</span>,<span class="citation"><a href="references.html#ref-Cohe2010" role="doc-biblioref">Cohen</a> (<a href="references.html#ref-Cohe2010" role="doc-biblioref">2010</a>)</span><span class="citation"><a href="references.html#ref-Bacc2013" role="doc-biblioref">Bacchelli and Bird</a> (<a href="references.html#ref-Bacc2013" role="doc-biblioref">2013</a>)</span>.
 Despite this,
 it still isn’t common in research software development,
-in part because it isn’t part of the culture <span class="citation">Segal (<a href="references.html#ref-Sega2005" role="doc-biblioref">2005</a>)</span>,
+in part because it isn’t part of the culture <span class="citation"><a href="references.html#ref-Sega2005" role="doc-biblioref">Segal</a> (<a href="references.html#ref-Sega2005" role="doc-biblioref">2005</a>)</span>,
 but also because code review is mostly useful
 when the reviewers understand the problem domain well enough to comment on algorithms and design choices
 rather than indentation and variable naming,
 and the number of people who can do that for a research project is typically very small—sometimes
-as small as one <span class="citation">Petre and Wilson (<a href="references.html#ref-Petr2014" role="doc-biblioref">2014</a>)</span>.</p>
+as small as one <span class="citation"><a href="references.html#ref-Petr2014" role="doc-biblioref">Petre and Wilson</a> (<a href="references.html#ref-Petr2014" role="doc-biblioref">2014</a>)</span>.</p>
 <p>This lesson will look at the mechanics of code review
 and present some short examples of the kinds of things reviewers should look for.</p>
 <div id="style-review" class="section level2" number="6.1">
@@ -632,11 +632,11 @@ Equally,
 being defensive when someone offers suggestions politely and sincerely is very human,
 but can stunt your development as a programmer.</p>
 <p>Lots of people have written guidelines for doing reviews,
-which are also useful when reviewing written work <span class="citation">Quenneville (<a href="references.html#ref-Quen2018" role="doc-biblioref">2018</a>)</span>,<span class="citation">Sankarram (<a href="references.html#ref-Sank2018" role="doc-biblioref">2018</a>)</span>.
+which are also useful when reviewing written work <span class="citation"><a href="references.html#ref-Quen2018" role="doc-biblioref">Quenneville</a> (<a href="references.html#ref-Quen2018" role="doc-biblioref">2018</a>)</span>,<span class="citation"><a href="references.html#ref-Sank2018" role="doc-biblioref">Sankarram</a> (<a href="references.html#ref-Sank2018" role="doc-biblioref">2018</a>)</span>.
 A few key points are:</p>
 <dl>
 <dt>Work in small increments.</dt>
-<dd>As <span class="citation">Cohen (<a href="references.html#ref-Cohe2010" role="doc-biblioref">2010</a>)</span> and others have found,
+<dd>As <span class="citation"><a href="references.html#ref-Cohe2010" role="doc-biblioref">Cohen</a> (<a href="references.html#ref-Cohe2010" role="doc-biblioref">2010</a>)</span> and others have found,
 code review is most effective when done in short bursts.
 That means that change requests should also be short:
 anything that’s more than a couple of screens long
@@ -697,7 +697,7 @@ won’t need the comment repeated.
 Asking them to add a few features while they’re at it is rude.
 </dd>
 <dt>Don’t let people break these rules just because they’re frequent contributors or in positions of power.</dt>
-<dd>The culture of any organization is shaped by the worst behavior it is willing to tolerate <span class="citation">Gruenert and Whitaker (<a href="references.html#ref-Grue2015" role="doc-biblioref">2015</a>)</span>.
+<dd>The culture of any organization is shaped by the worst behavior it is willing to tolerate <span class="citation"><a href="references.html#ref-Grue2015" role="doc-biblioref">Gruenert and Whitaker</a> (<a href="references.html#ref-Grue2015" role="doc-biblioref">2015</a>)</span>.
 If you let people be rude to one another,
 <em>that</em> is your culture.
 </dd>
@@ -790,7 +790,7 @@ to describe some of the things people should change in their software.
 <a href="glossary.html#refactoring">Refactoring</a> means changing the structure of code without changing what it does,
 like refactoring an equation to simplify it.
 It is just as much a part of programming as writing code in the first place:
-nobody gets things right the first time <span class="citation">Brand (<a href="references.html#ref-Bran1995" role="doc-biblioref">1995</a>)</span>,
+nobody gets things right the first time <span class="citation"><a href="references.html#ref-Bran1995" role="doc-biblioref">Brand</a> (<a href="references.html#ref-Bran1995" role="doc-biblioref">1995</a>)</span>,
 and needs or insights can change over time.</p>
 <p>Most discussions of refactoring focus on …
 TODO: Complete for R
@@ -801,7 +801,7 @@ Knowing them and their names will help you create better software,
 and also make it easier for you to communicate with your peers.</p>
 <div id="do-not-repeat-values" class="section level3" number="6.5.1">
 <h3><span class="header-section-number">6.5.1</span> Do not repeat values</h3>
-<p>Our first and simplest refactoring is called “replace value with name”.
+<p>Our first and simplest refactoring is called “replace value with name.”
 It tells us to replace magic numbers with names,
 i.e., to define constants.
 This can seem ridiculous in simple cases
@@ -820,7 +820,7 @@ Finally,
 a single value defined in one place is much easier to change
 than a bunch of numbers scattered throughout your program.
 You may not think you will have to change it,
-but then people want to use your software on Mars and you discover that constants aren’t <span class="citation">Mak (<a href="references.html#ref-Mak2006" role="doc-biblioref">2006</a>)</span>.</p>
+but then people want to use your software on Mars and you discover that constants aren’t <span class="citation"><a href="references.html#ref-Mak2006" role="doc-biblioref">Mak</a> (<a href="references.html#ref-Mak2006" role="doc-biblioref">2006</a>)</span>.</p>
 <p>TODO: Include R example here.</p>
 </div>
 <div id="do-not-repeat-calculations-in-loops" class="section level3" number="6.5.2">
@@ -830,7 +830,7 @@ It also makes code less readable:
 if a calculation is inside a loop or a function,
 readers will assume that it might change each time the code is executed.</p>
 <p>Our second refactoring,
-“hoist repeated calculation out of loop”,
+“hoist repeated calculation out of loop,”
 tells us to move the repeated calculation out of the loop or function.
 Doing this signals that its value is always the same.
 And by naming that common value,
@@ -840,20 +840,20 @@ you help readers understand what its purpose is.</p>
 <div id="replace-tests-with-flags-to-clarify-repeated-tests" class="section level3" number="6.5.3">
 <h3><span class="header-section-number">6.5.3</span> Replace tests with flags to clarify repeated tests</h3>
 <p>Novice programmers frequently write conditional tests like this:</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="style.html#cb469-1" aria-hidden="true"></a><span class="cf">if</span> ((a <span class="op">&gt;</span><span class="st"> </span>b) <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {</span>
-<span id="cb469-2"><a href="style.html#cb469-2" aria-hidden="true"></a>    <span class="co"># ...do something...</span></span>
-<span id="cb469-3"><a href="style.html#cb469-3" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="style.html#cb469-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> ((a <span class="sc">&gt;</span> b) <span class="sc">==</span> <span class="cn">TRUE</span>) {</span>
+<span id="cb469-2"><a href="style.html#cb469-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...do something...</span></span>
+<span id="cb469-3"><a href="style.html#cb469-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>The comparison to <code>TRUE</code> is unnecessary because <code>a &gt; b</code> is a Boolean value
 that is itself either <code>TRUE</code> or <code>FALSE</code>.
 Like any other value,
 Booleans can be assigned to variables,
 and those variables can then be used directly in tests:</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="style.html#cb470-1" aria-hidden="true"></a>was_greater =<span class="st"> </span>estimate <span class="op">&gt;</span><span class="st"> </span><span class="fl">0.0</span></span>
-<span id="cb470-2"><a href="style.html#cb470-2" aria-hidden="true"></a><span class="co"># ...other code that might change estimate...</span></span>
-<span id="cb470-3"><a href="style.html#cb470-3" aria-hidden="true"></a><span class="cf">if</span> (was_greater) {</span>
-<span id="cb470-4"><a href="style.html#cb470-4" aria-hidden="true"></a>    <span class="co"># ...do something...</span></span>
-<span id="cb470-5"><a href="style.html#cb470-5" aria-hidden="true"></a>}</span></code></pre></div>
-<p>This refactoring is called “replace repeated test with flag”.
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="style.html#cb470-1" aria-hidden="true" tabindex="-1"></a>was_greater <span class="ot">=</span> estimate <span class="sc">&gt;</span> <span class="fl">0.0</span></span>
+<span id="cb470-2"><a href="style.html#cb470-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ...other code that might change estimate...</span></span>
+<span id="cb470-3"><a href="style.html#cb470-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (was_greater) {</span>
+<span id="cb470-4"><a href="style.html#cb470-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ...do something...</span></span>
+<span id="cb470-5"><a href="style.html#cb470-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>This refactoring is called “replace repeated test with flag.”
 When it is used,
 there is no need to write <code>if (was_greater == TRUE)</code>:
 that always produces the same result as <code>if was_greater</code>.
@@ -878,7 +878,7 @@ and returning <code>math.nan</code> for the average if the list is empty.
 so that readers can mentally remove special cases from their thinking
 while reading the code that handles the usual case.</p>
 <p>TODO: R example</p>
-<p>A related refactoring pattern is called “default and override”.
+<p>A related refactoring pattern is called “default and override.”
 To use it,
 find cases where a value is set conditionally;
 assign the default or most common value unconditionally,
@@ -913,7 +913,7 @@ to reduce typing.</p>
 </div>
 <div id="combine-operations-in-functions" class="section level3" number="6.5.6">
 <h3><span class="header-section-number">6.5.6</span> Combine operations in functions</h3>
-<p>“Combine functions” is the opposite of “extract function”.
+<p>“Combine functions” is the opposite of “extract function.”
 If operations are always done together,
 it can sometimes be be more efficient to do them together,
 and <em>might</em> be easier to understand.

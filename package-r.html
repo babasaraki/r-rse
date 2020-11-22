@@ -24,7 +24,7 @@
 <meta name="author" content="Kate Hertweck, Damien Irving, Luke Johnston, Joel Ostblom, Charlotte Wickham, Ian Flores Siaca, and Greg Wilson" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -713,7 +713,7 @@ to hold word frequencies in classic English novels.
 The first step is to load <code>usethis</code> in the console with <code>library(usethis)</code>
 and use <code>usethis::create_package</code>
 with the path to the new package directory as an argument:</p>
-<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="package-r.html#cb533-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">create_package</span>(<span class="st">&#39;~/zipffreq&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="package-r.html#cb533-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_package</span>(<span class="st">&#39;~/zipffreq&#39;</span>)</span></code></pre></div>
 <pre><code>✔ Setting active project to &#39;/Users/hamilton/zipffreq&#39;
 ✔ Creating &#39;R/&#39;
 ✔ Creating &#39;man/&#39;
@@ -727,9 +727,9 @@ with the path to the new package directory as an argument:</p>
 a license,
 and a Code of Conduct,
 so we will ask <code>usethis</code> to add those:</p>
-<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="package-r.html#cb535-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_readme_md</span>()</span>
-<span id="cb535-2"><a href="package-r.html#cb535-2" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_mit_license</span>(<span class="dt">name=</span><span class="st">&quot;Merely Useful&quot;</span>)</span>
-<span id="cb535-3"><a href="package-r.html#cb535-3" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_code_of_conduct</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="package-r.html#cb535-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_readme_md</span>()</span>
+<span id="cb535-2"><a href="package-r.html#cb535-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_mit_license</span>(<span class="at">name=</span><span class="st">&quot;Merely Useful&quot;</span>)</span>
+<span id="cb535-3"><a href="package-r.html#cb535-3" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_code_of_conduct</span>()</span></code></pre></div>
 <p>(Note that <code>use_mit_license</code> creates two files: <code>LICENSE</code> and <code>LICENSE.md</code>.
 The rules for R packages require the former,
 but GitHub expects the latter.)
@@ -779,9 +779,9 @@ in a file called <code>R/frequency.R</code>
 either by using <code>File…New</code> in RStudio
 or by running <code>usethis::use_r('frequency.R')</code>
 (which always creates the file in the <code>R</code> directory):</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="package-r.html#cb538-1" aria-hidden="true"></a>word_count &lt;-<span class="st"> </span><span class="cf">function</span>(word, text) {</span>
-<span id="cb538-2"><a href="package-r.html#cb538-2" aria-hidden="true"></a>  <span class="dv">0</span></span>
-<span id="cb538-3"><a href="package-r.html#cb538-3" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="package-r.html#cb538-1" aria-hidden="true" tabindex="-1"></a>word_count <span class="ot">&lt;-</span> <span class="cf">function</span>(word, text) {</span>
+<span id="cb538-2"><a href="package-r.html#cb538-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span></span>
+<span id="cb538-3"><a href="package-r.html#cb538-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p><code>Build…Check</code> runs a lot more checks now
 because we have some actual code for it to look at.
 It warns us that our function needs documentation,
@@ -835,18 +835,18 @@ we turn to Hadley Wickham’s <em><a href="http://r-pkgs.had.co.nz/">R Packages<
 and Karl Broman’s “<a href="https://kbroman.org/pkg_primer/">R package primer</a>”
 for advice on writing roxygen2.
 We then return to our source file and put a specially-formatted comment in front of our code:</p>
-<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="package-r.html#cb539-1" aria-hidden="true"></a><span class="co">#&#39; Count how often a word appears in a piece of text</span></span>
-<span id="cb539-2"><a href="package-r.html#cb539-2" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb539-3"><a href="package-r.html#cb539-3" aria-hidden="true"></a><span class="co">#&#39; @param word the word to search for</span></span>
-<span id="cb539-4"><a href="package-r.html#cb539-4" aria-hidden="true"></a><span class="co">#&#39; @param text the text to search in</span></span>
-<span id="cb539-5"><a href="package-r.html#cb539-5" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb539-6"><a href="package-r.html#cb539-6" aria-hidden="true"></a><span class="co">#&#39; @return number of times the word appears in the text</span></span>
-<span id="cb539-7"><a href="package-r.html#cb539-7" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb539-8"><a href="package-r.html#cb539-8" aria-hidden="true"></a><span class="co">#&#39; @export</span></span>
-<span id="cb539-9"><a href="package-r.html#cb539-9" aria-hidden="true"></a></span>
-<span id="cb539-10"><a href="package-r.html#cb539-10" aria-hidden="true"></a>word_count &lt;-<span class="st"> </span><span class="cf">function</span>(word, text) {</span>
-<span id="cb539-11"><a href="package-r.html#cb539-11" aria-hidden="true"></a>  <span class="dv">0</span></span>
-<span id="cb539-12"><a href="package-r.html#cb539-12" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="package-r.html#cb539-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Count how often a word appears in a piece of text</span></span>
+<span id="cb539-2"><a href="package-r.html#cb539-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb539-3"><a href="package-r.html#cb539-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param word the word to search for</span></span>
+<span id="cb539-4"><a href="package-r.html#cb539-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @param text the text to search in</span></span>
+<span id="cb539-5"><a href="package-r.html#cb539-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb539-6"><a href="package-r.html#cb539-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @return number of times the word appears in the text</span></span>
+<span id="cb539-7"><a href="package-r.html#cb539-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb539-8"><a href="package-r.html#cb539-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @export</span></span>
+<span id="cb539-9"><a href="package-r.html#cb539-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb539-10"><a href="package-r.html#cb539-10" aria-hidden="true" tabindex="-1"></a>word_count <span class="ot">&lt;-</span> <span class="cf">function</span>(word, text) {</span>
+<span id="cb539-11"><a href="package-r.html#cb539-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span></span>
+<span id="cb539-12"><a href="package-r.html#cb539-12" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>This comment text,
 is an example of <a href="glossary.html#embedded-documentation">embedded documentation</a>,
 can be easily inserted by placing the cursor somewhere in the function
@@ -884,7 +884,7 @@ or object, respectively, documentation in another package.</li>
 </ul>
 <p>To enable Markdown with roxygen2 we’ll need to install the package roxygen2md package
 and use:</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="package-r.html#cb540-1" aria-hidden="true"></a>roxygen2md<span class="op">::</span><span class="kw">roxygen2md</span>(<span class="st">&quot;full&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="package-r.html#cb540-1" aria-hidden="true" tabindex="-1"></a>roxygen2md<span class="sc">::</span><span class="fu">roxygen2md</span>(<span class="st">&quot;full&quot;</span>)</span></code></pre></div>
 <p>which will output something like:</p>
 <pre><code>✔ Setting active project to &#39;/Users/hamilton/zipffreq&#39;
 No files changed.
@@ -917,9 +917,9 @@ Writing word_count.Rd</code></pre>
 <p>We now have two files to look at:
 <code>NAMESPACE</code> and <code>word_count.Rd</code>.
 The first looks like this:</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="package-r.html#cb544-1" aria-hidden="true"></a><span class="co"># Generated by roxygen2: do not edit by hand</span></span>
-<span id="cb544-2"><a href="package-r.html#cb544-2" aria-hidden="true"></a></span>
-<span id="cb544-3"><a href="package-r.html#cb544-3" aria-hidden="true"></a><span class="kw">export</span>(word_count)</span></code></pre></div>
+<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="package-r.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generated by roxygen2: do not edit by hand</span></span>
+<span id="cb544-2"><a href="package-r.html#cb544-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb544-3"><a href="package-r.html#cb544-3" aria-hidden="true" tabindex="-1"></a><span class="fu">export</span>(word_count)</span></code></pre></div>
 <p>The comment at the start tells roxygen2 it can overwrite the file,
 and reminds us that we shouldn’t edit it by hand.
 The <code>export(word_count)</code> directive is what we really want:
@@ -950,7 +950,7 @@ Count how often a word appears in a piece of text
 <p>Again,
 there’s a comment at the top to remind us that we shouldn’t edit this by hand.
 After doing this,
-we go into “Build…More…Configure build tools” and check “Generate documentation with Roxygen”.
+we go into “Build…More…Configure build tools” and check “Generate documentation with Roxygen.”
 Running <code>Check</code> again now gives us a clean bill of health.
 If we use the <code>Install and Restart</code> button in RStudio’s <code>Build</code> tab,
 we can now use <code>?word_count</code> in the console to view our help.</p>
@@ -977,7 +977,7 @@ If the function has any <a href="glossary.html#side-effects">side effects</a>,
 you should eliminate them.
 If you can’t,
 you should describe them too.</p>
-<p>An active verb is something like “extract”, “normalize”, or “find”.
+<p>An active verb is something like “extract,” “normalize,” or “find.”
 For example,
 these are all good one-line comments:</p>
 <ul>
@@ -1049,20 +1049,20 @@ The safest way is to use <a href="glossary.html#fully-qualified-name">fully-qual
 such as <code>stringr::str_replace</code>
 every time we call a function from another package or that is defined somewhere outside our package.
 Let’s modify our word counter to use <code>stringr::str_count</code>:</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="package-r.html#cb546-1" aria-hidden="true"></a>word_count &lt;-<span class="st"> </span><span class="cf">function</span>(word, text) {</span>
-<span id="cb546-2"><a href="package-r.html#cb546-2" aria-hidden="true"></a>  stringr<span class="op">::</span><span class="kw">str_count</span>(text, word)</span>
-<span id="cb546-3"><a href="package-r.html#cb546-3" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="package-r.html#cb546-1" aria-hidden="true" tabindex="-1"></a>word_count <span class="ot">&lt;-</span> <span class="cf">function</span>(word, text) {</span>
+<span id="cb546-2"><a href="package-r.html#cb546-2" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_count</span>(text, word)</span>
+<span id="cb546-3"><a href="package-r.html#cb546-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Since our compiled-and-distributable package will only contain the compiled code for its own functions,
 direct calls to functions from other packages won’t work after the package is installed.
 To fix this,
 we ask <code>usethis</code> to add a note about <code>stringr</code> to <code>DESCRIPTION</code>:</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="package-r.html#cb547-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_package</span>(<span class="st">&#39;stringr&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="package-r.html#cb547-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_package</span>(<span class="st">&#39;stringr&#39;</span>)</span></code></pre></div>
 <p>The bottom of <code>DESCRIPTION</code> now has these two lines:</p>
 <pre><code>Imports:
     stringr</code></pre>
 <p>The <code>Imports</code> field in <code>DESCRIPTION</code> tells R what else it has to install when it installs our package.
 To be explicit about the version of the package, we can run:</p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="package-r.html#cb549-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_tidy_versions</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="package-r.html#cb549-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_tidy_versions</span>()</span></code></pre></div>
 <p>Which will add the version of the package to the <code>DESCRIPTION</code> file, which will
 look like:</p>
 <pre><code>Imports:
@@ -1091,7 +1091,7 @@ No, we are not:</p>
 as well as through CRAN.
 If someone has done this,
 installing the package on your computer is as simple as:</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="package-r.html#cb551-1" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;username/reponame&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="package-r.html#cb551-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;username/reponame&quot;</span>)</span></code></pre></div>
 <p>where <code>username</code> and <code>reponame</code> are the names of the user and the project respectively.
 If you want to share your work,
 all you have to do is create a repository whose contents are laid out
@@ -1104,8 +1104,8 @@ if it looks like an R project,
 <p>The last steps are to add some cleaned-up data to our package
 and document the package as a whole. If we want to create fake data or clean up
 raw data, we should first run the command:</p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="package-r.html#cb552-1" aria-hidden="true"></a><span class="co"># Let&#39;s name the data &quot;small_data&quot;, but it can be anything.</span></span>
-<span id="cb552-2"><a href="package-r.html#cb552-2" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_data_raw</span>(<span class="st">&quot;small_data&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb552-1"><a href="package-r.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Let&#39;s name the data &quot;small_data&quot;, but it can be anything.</span></span>
+<span id="cb552-2"><a href="package-r.html#cb552-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data_raw</span>(<span class="st">&quot;small_data&quot;</span>)</span></code></pre></div>
 <p>which outputs:</p>
 <pre><code>✔ Creating &#39;data-raw/&#39;
 ✔ Adding &#39;^data-raw$&#39; to &#39;.Rbuildignore&#39;
@@ -1119,12 +1119,12 @@ Inside that new file is:</p>
 
 usethis::use_data(&quot;small_data&quot;)</code></pre>
 <p>Let’s replace the first comment with:</p>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="package-r.html#cb555-1" aria-hidden="true"></a>small_data &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb555-2"><a href="package-r.html#cb555-2" aria-hidden="true"></a>  <span class="op">~</span>word,  <span class="op">~</span><span class="st"> </span>count,</span>
-<span id="cb555-3"><a href="package-r.html#cb555-3" aria-hidden="true"></a>  <span class="st">&quot;some&quot;</span>,   <span class="dv">2</span>,</span>
-<span id="cb555-4"><a href="package-r.html#cb555-4" aria-hidden="true"></a>  <span class="st">&quot;words&quot;</span>,  <span class="dv">1</span>,</span>
-<span id="cb555-5"><a href="package-r.html#cb555-5" aria-hidden="true"></a>  <span class="st">&quot;appear&quot;</span>, <span class="dv">1</span>,</span>
-<span id="cb555-6"><a href="package-r.html#cb555-6" aria-hidden="true"></a>  <span class="st">&quot;times&quot;</span>,  <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="package-r.html#cb555-1" aria-hidden="true" tabindex="-1"></a>small_data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb555-2"><a href="package-r.html#cb555-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>word,  <span class="sc">~</span> count,</span>
+<span id="cb555-3"><a href="package-r.html#cb555-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;some&quot;</span>,   <span class="dv">2</span>,</span>
+<span id="cb555-4"><a href="package-r.html#cb555-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;words&quot;</span>,  <span class="dv">1</span>,</span>
+<span id="cb555-5"><a href="package-r.html#cb555-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;appear&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb555-6"><a href="package-r.html#cb555-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;times&quot;</span>,  <span class="dv">1</span>)</span></code></pre></div>
 <p>which looks like:</p>
 <pre><code># A tibble: 4 x 2
   word   count
@@ -1134,15 +1134,15 @@ usethis::use_data(&quot;small_data&quot;)</code></pre>
 3 appear     1
 4 times      1</code></pre>
 <p>Remove the quotes within the <code>use_data()</code>. The new file should contain the code:</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="package-r.html#cb557-1" aria-hidden="true"></a>small_data &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb557-2"><a href="package-r.html#cb557-2" aria-hidden="true"></a>  <span class="op">~</span>word,  <span class="op">~</span><span class="st"> </span>count,</span>
-<span id="cb557-3"><a href="package-r.html#cb557-3" aria-hidden="true"></a>  <span class="st">&quot;some&quot;</span>,   <span class="dv">2</span>,</span>
-<span id="cb557-4"><a href="package-r.html#cb557-4" aria-hidden="true"></a>  <span class="st">&quot;words&quot;</span>,  <span class="dv">1</span>,</span>
-<span id="cb557-5"><a href="package-r.html#cb557-5" aria-hidden="true"></a>  <span class="st">&quot;appear&quot;</span>, <span class="dv">1</span>,</span>
-<span id="cb557-6"><a href="package-r.html#cb557-6" aria-hidden="true"></a>  <span class="st">&quot;times&quot;</span>,  <span class="dv">1</span></span>
-<span id="cb557-7"><a href="package-r.html#cb557-7" aria-hidden="true"></a>  )</span>
-<span id="cb557-8"><a href="package-r.html#cb557-8" aria-hidden="true"></a></span>
-<span id="cb557-9"><a href="package-r.html#cb557-9" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_data</span>(small_data)</span></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="package-r.html#cb557-1" aria-hidden="true" tabindex="-1"></a>small_data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb557-2"><a href="package-r.html#cb557-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>word,  <span class="sc">~</span> count,</span>
+<span id="cb557-3"><a href="package-r.html#cb557-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;some&quot;</span>,   <span class="dv">2</span>,</span>
+<span id="cb557-4"><a href="package-r.html#cb557-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;words&quot;</span>,  <span class="dv">1</span>,</span>
+<span id="cb557-5"><a href="package-r.html#cb557-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;appear&quot;</span>, <span class="dv">1</span>,</span>
+<span id="cb557-6"><a href="package-r.html#cb557-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;times&quot;</span>,  <span class="dv">1</span></span>
+<span id="cb557-7"><a href="package-r.html#cb557-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb557-8"><a href="package-r.html#cb557-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb557-9"><a href="package-r.html#cb557-9" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_data</span>(small_data)</span></code></pre></div>
 <p>Run the script by hitting “Source” (or <code>source("data-raw/small_data.R")</code>). This
 will output:</p>
 <pre><code>✔ Creating &#39;data/&#39;
@@ -1153,18 +1153,18 @@ throughout the package!</p>
 we get a complaint about an undocumented data set,
 so we create a file called <code>R/small_data.R</code> to hold documentation about the dataset
 and put this in it:</p>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="package-r.html#cb559-1" aria-hidden="true"></a><span class="co">#&#39; Sample word frequency data.</span></span>
-<span id="cb559-2"><a href="package-r.html#cb559-2" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb559-3"><a href="package-r.html#cb559-3" aria-hidden="true"></a><span class="co">#&#39; This small dataset contains word frequencies for tutorial purposes.</span></span>
-<span id="cb559-4"><a href="package-r.html#cb559-4" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb559-5"><a href="package-r.html#cb559-5" aria-hidden="true"></a><span class="co">#&#39; @docType data</span></span>
-<span id="cb559-6"><a href="package-r.html#cb559-6" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb559-7"><a href="package-r.html#cb559-7" aria-hidden="true"></a><span class="co">#&#39; @format A data frame</span></span>
-<span id="cb559-8"><a href="package-r.html#cb559-8" aria-hidden="true"></a><span class="co">#&#39; \describe{</span></span>
-<span id="cb559-9"><a href="package-r.html#cb559-9" aria-hidden="true"></a><span class="co">#&#39;   \item{word}{The word being counted (chr)}</span></span>
-<span id="cb559-10"><a href="package-r.html#cb559-10" aria-hidden="true"></a><span class="co">#&#39;   \item{n}{The number of occurrences (int)}</span></span>
-<span id="cb559-11"><a href="package-r.html#cb559-11" aria-hidden="true"></a><span class="co">#&#39; }</span></span>
-<span id="cb559-12"><a href="package-r.html#cb559-12" aria-hidden="true"></a><span class="st">&quot;small_data&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="package-r.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Sample word frequency data.</span></span>
+<span id="cb559-2"><a href="package-r.html#cb559-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb559-3"><a href="package-r.html#cb559-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; This small dataset contains word frequencies for tutorial purposes.</span></span>
+<span id="cb559-4"><a href="package-r.html#cb559-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb559-5"><a href="package-r.html#cb559-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @docType data</span></span>
+<span id="cb559-6"><a href="package-r.html#cb559-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb559-7"><a href="package-r.html#cb559-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @format A data frame</span></span>
+<span id="cb559-8"><a href="package-r.html#cb559-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; \describe{</span></span>
+<span id="cb559-9"><a href="package-r.html#cb559-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{word}{The word being counted (chr)}</span></span>
+<span id="cb559-10"><a href="package-r.html#cb559-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;   \item{n}{The number of occurrences (int)}</span></span>
+<span id="cb559-11"><a href="package-r.html#cb559-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; }</span></span>
+<span id="cb559-12"><a href="package-r.html#cb559-12" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;small_data&quot;</span></span></code></pre></div>
 <p>Everything except the last line is a roxygen2 comment block
 that describes the data in plain language,
 then uses some tags and directives to document its format and fields.
@@ -1186,12 +1186,12 @@ we add this line:</p>
 we create a file <code>R/zipffreq.R</code>
 (i.e., a file with exactly the same name as the package)
 and put this in it:</p>
-<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="package-r.html#cb562-1" aria-hidden="true"></a><span class="co">#&#39; Example of an R package.</span></span>
-<span id="cb562-2"><a href="package-r.html#cb562-2" aria-hidden="true"></a><span class="co">#&#39;</span></span>
-<span id="cb562-3"><a href="package-r.html#cb562-3" aria-hidden="true"></a><span class="co">#&#39; @author Merely Useful, \email{merely.useful@gmail.com}</span></span>
-<span id="cb562-4"><a href="package-r.html#cb562-4" aria-hidden="true"></a><span class="co">#&#39; @docType package</span></span>
-<span id="cb562-5"><a href="package-r.html#cb562-5" aria-hidden="true"></a><span class="co">#&#39; @name zipffreq</span></span>
-<span id="cb562-6"><a href="package-r.html#cb562-6" aria-hidden="true"></a><span class="ot">NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb562-1"><a href="package-r.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; Example of an R package.</span></span>
+<span id="cb562-2"><a href="package-r.html#cb562-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39;</span></span>
+<span id="cb562-3"><a href="package-r.html#cb562-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @author Merely Useful, \email{merely.useful@gmail.com}</span></span>
+<span id="cb562-4"><a href="package-r.html#cb562-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @docType package</span></span>
+<span id="cb562-5"><a href="package-r.html#cb562-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&#39; @name zipffreq</span></span>
+<span id="cb562-6"><a href="package-r.html#cb562-6" aria-hidden="true" tabindex="-1"></a><span class="cn">NULL</span></span></code></pre></div>
 <p>That’s right:
 to document the entire package,
 we document <code>NULL</code>.

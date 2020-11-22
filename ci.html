@@ -24,7 +24,7 @@
 <meta name="author" content="Kate Hertweck, Damien Irving, Luke Johnston, Joel Ostblom, Charlotte Wickham, Ian Flores Siaca, and Greg Wilson" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -682,7 +682,7 @@ to make sure we are comfortable with what it is planning to do.</p>
 <h3><span class="header-section-number">10.1.1</span> Watching a repository</h3>
 <p>We tell Travis CI about our repository through its website interface.
 On the left,
-besides the “My Repositories”,
+besides the “My Repositories,”
 we can click the “+” to add a repository that is already on GitHub
 (Figure <a href="ci.html#fig:ci-add-repo">10.1</a>).
 After finding our repository in the list that pops up,
@@ -742,7 +742,7 @@ depending on the most recently recorded build status for that project.</p>
 <div id="ci-setting-up-with-r" class="section level2" number="10.3">
 <h2><span class="header-section-number">10.3</span> How can I set up Travis CI for an R project?</h2>
 <p>The simplest way to set up and use Travis CI with R is to call:</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="ci.html#cb529-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_travis</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="ci.html#cb529-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_travis</span>()</span></code></pre></div>
 <p>This command:</p>
 <ul>
 <li>Creates a <code>.travis.yml</code> configuration file with typical settings for an R package.</li>
@@ -769,7 +769,7 @@ the Travis CI log located right below the build overview
 will contain all of the information that our testing command produces when tests fail.</p>
 <p>We can also have Travis CI report the <a href="glossary.html#code-coverage">code coverage</a> of our tests (Section <a href="correct.html#correct-coverage">12.7</a>).
 This command will set everything up for us:</p>
-<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="ci.html#cb530-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_coverage</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="ci.html#cb530-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_coverage</span>()</span></code></pre></div>
 <p>FIXME: explain what this does to the YAML file.</p>
 </div>
 <div id="ci-deploying" class="section level2" number="10.5">
@@ -779,18 +779,18 @@ but it can be used to automate almost anything.
 For example,
 if we want to create a website for an R package,
 we can run:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="ci.html#cb531-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown</span>()</span>
-<span id="cb531-2"><a href="ci.html#cb531-2" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_pkgdown_travis</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="ci.html#cb531-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown</span>()</span>
+<span id="cb531-2"><a href="ci.html#cb531-2" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_pkgdown_travis</span>()</span></code></pre></div>
 <p>to add lines like this to our <code>.travis.yml</code> file:</p>
-<div class="sourceCode" id="cb532"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb532-1"><a href="ci.html#cb532-1" aria-hidden="true"></a><span class="fu">language</span><span class="kw">:</span><span class="at"> R</span></span>
-<span id="cb532-2"><a href="ci.html#cb532-2" aria-hidden="true"></a><span class="fu">sudo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb532-3"><a href="ci.html#cb532-3" aria-hidden="true"></a><span class="fu">cache</span><span class="kw">:</span><span class="at"> packages</span></span>
-<span id="cb532-4"><a href="ci.html#cb532-4" aria-hidden="true"></a></span>
-<span id="cb532-5"><a href="ci.html#cb532-5" aria-hidden="true"></a><span class="fu">before_cache</span><span class="kw">:</span><span class="at"> Rscript -e &#39;remotes::install_cran(&quot;pkgdown&quot;)&#39;</span></span>
-<span id="cb532-6"><a href="ci.html#cb532-6" aria-hidden="true"></a><span class="fu">deploy</span><span class="kw">:</span></span>
-<span id="cb532-7"><a href="ci.html#cb532-7" aria-hidden="true"></a><span class="at">  </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> script</span></span>
-<span id="cb532-8"><a href="ci.html#cb532-8" aria-hidden="true"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span><span class="at"> Rscript -e &#39;pkgdown::deploy_site_github()&#39;</span></span>
-<span id="cb532-9"><a href="ci.html#cb532-9" aria-hidden="true"></a><span class="at">  </span><span class="fu">skip_cleanup</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb532-1"><a href="ci.html#cb532-1" aria-hidden="true" tabindex="-1"></a><span class="fu">language</span><span class="kw">:</span><span class="at"> R</span></span>
+<span id="cb532-2"><a href="ci.html#cb532-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
+<span id="cb532-3"><a href="ci.html#cb532-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cache</span><span class="kw">:</span><span class="at"> packages</span></span>
+<span id="cb532-4"><a href="ci.html#cb532-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb532-5"><a href="ci.html#cb532-5" aria-hidden="true" tabindex="-1"></a><span class="fu">before_cache</span><span class="kw">:</span><span class="at"> Rscript -e &#39;remotes::install_cran(&quot;pkgdown&quot;)&#39;</span></span>
+<span id="cb532-6"><a href="ci.html#cb532-6" aria-hidden="true" tabindex="-1"></a><span class="fu">deploy</span><span class="kw">:</span></span>
+<span id="cb532-7"><a href="ci.html#cb532-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">provider</span><span class="kw">:</span><span class="at"> script</span></span>
+<span id="cb532-8"><a href="ci.html#cb532-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">script</span><span class="kw">:</span><span class="at"> Rscript -e &#39;pkgdown::deploy_site_github()&#39;</span></span>
+<span id="cb532-9"><a href="ci.html#cb532-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">skip_cleanup</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span></code></pre></div>
 <p>The <code>deploy</code> section tells Travis CI to put the generated website files online
 using <a href="https://pages.github.com/">GitHub Pages</a>.</p>
 <p>FIXME: this section needs more detail.

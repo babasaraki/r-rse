@@ -24,7 +24,7 @@
 <meta name="author" content="Kate Hertweck, Damien Irving, Luke Johnston, Joel Ostblom, Charlotte Wickham, Ian Flores Siaca, and Greg Wilson" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -611,20 +611,20 @@ This chapter explores ways of doing that in R.</p>
 <h2><span class="header-section-number">12.1</span> How can I test functions manually?</h2>
 <p>Suppose we have written a function to get the sign of a number.
 This might be:</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="correct.html#cb563-1" aria-hidden="true"></a>numSign &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
-<span id="cb563-2"><a href="correct.html#cb563-2" aria-hidden="true"></a>  <span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb563-3"><a href="correct.html#cb563-3" aria-hidden="true"></a>    <span class="dv">1</span></span>
-<span id="cb563-4"><a href="correct.html#cb563-4" aria-hidden="true"></a>  } <span class="cf">else</span> {</span>
-<span id="cb563-5"><a href="correct.html#cb563-5" aria-hidden="true"></a>    <span class="dv">-1</span></span>
-<span id="cb563-6"><a href="correct.html#cb563-6" aria-hidden="true"></a>  }</span>
-<span id="cb563-7"><a href="correct.html#cb563-7" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="correct.html#cb563-1" aria-hidden="true" tabindex="-1"></a>numSign <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb563-2"><a href="correct.html#cb563-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (x <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb563-3"><a href="correct.html#cb563-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span></span>
+<span id="cb563-4"><a href="correct.html#cb563-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb563-5"><a href="correct.html#cb563-5" aria-hidden="true" tabindex="-1"></a>    <span class="sc">-</span><span class="dv">1</span></span>
+<span id="cb563-6"><a href="correct.html#cb563-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb563-7"><a href="correct.html#cb563-7" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>A simple way to test the function interactively
 is to check that it produces the correct value for a few representative cases:</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="correct.html#cb564-1" aria-hidden="true"></a><span class="kw">numSign</span>(<span class="dv">2</span>) <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="correct.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="fu">numSign</span>(<span class="dv">2</span>) <span class="sc">==</span> <span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="correct.html#cb566-1" aria-hidden="true"></a><span class="kw">numSign</span>(<span class="dv">0</span>) <span class="op">==</span><span class="st"> </span><span class="dv">0</span></span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="correct.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="fu">numSign</span>(<span class="dv">0</span>) <span class="sc">==</span> <span class="dv">0</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="correct.html#cb568-1" aria-hidden="true"></a><span class="kw">numSign</span>(<span class="op">-</span><span class="dv">4</span>) <span class="op">==</span><span class="st"> </span><span class="dv">-1</span></span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="correct.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">numSign</span>(<span class="sc">-</span><span class="dv">4</span>) <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
 <p>These tests show that it handles (some) positive and negatives value correctly,
 but gives the wrong value for zero
@@ -636,11 +636,11 @@ That phrase “with a single command” suggests that we should write a second f
 whose job is to re-run tests for the first.
 In R,
 this might be:</p>
-<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="correct.html#cb570-1" aria-hidden="true"></a>test_numSign &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb570-2"><a href="correct.html#cb570-2" aria-hidden="true"></a>    <span class="kw">stopifnot</span>(<span class="kw">numSign</span>(<span class="fl">0.1</span>) <span class="op">==</span><span class="st"> </span><span class="dv">1</span>)</span>
-<span id="cb570-3"><a href="correct.html#cb570-3" aria-hidden="true"></a>    <span class="kw">stopifnot</span>(<span class="kw">numSign</span>(<span class="dv">0</span>) <span class="op">==</span><span class="st"> </span><span class="dv">0</span>)</span>
-<span id="cb570-4"><a href="correct.html#cb570-4" aria-hidden="true"></a>    <span class="kw">stopifnot</span>(<span class="kw">numSign</span>(<span class="op">-</span><span class="ot">Inf</span>) <span class="op">==</span><span class="st"> </span><span class="dv">-1</span>)</span>
-<span id="cb570-5"><a href="correct.html#cb570-5" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="correct.html#cb570-1" aria-hidden="true" tabindex="-1"></a>test_numSign <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb570-2"><a href="correct.html#cb570-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">numSign</span>(<span class="fl">0.1</span>) <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb570-3"><a href="correct.html#cb570-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">numSign</span>(<span class="dv">0</span>) <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb570-4"><a href="correct.html#cb570-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stopifnot</span>(<span class="fu">numSign</span>(<span class="sc">-</span><span class="cn">Inf</span>) <span class="sc">==</span> <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb570-5"><a href="correct.html#cb570-5" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>As its name suggests,
 <code>stopifnot</code> stops the program if its argument is not true.</p>
 </div>
@@ -720,7 +720,7 @@ Let’s create a new project in RStudio called <code>creater</code> of type “p
 (both because <code>usethis</code> is designed to work with packages,
 and because our R projects should always be packages).
 We can then type:</p>
-<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="correct.html#cb572-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_testthat</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="correct.html#cb572-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_testthat</span>()</span></code></pre></div>
 <pre class="text"><code>✔ Setting active project to &#39;/Users/merely/creater&#39;
 ✔ Adding &#39;testthat&#39; to Suggests field in DESCRIPTION
 ✔ Creating &#39;tests/testthat/&#39;
@@ -733,22 +733,22 @@ This may seem like a lot,
 but it is all needed to create an R package (Chapter <a href="package-r.html#package-r">11</a>),
 so we might as well do things that way from the start.</p>
 <p>The file <code>tests/testthat.R</code> contains:</p>
-<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="correct.html#cb574-1" aria-hidden="true"></a><span class="kw">library</span>(testthat)</span>
-<span id="cb574-2"><a href="correct.html#cb574-2" aria-hidden="true"></a><span class="kw">library</span>(creater)</span>
-<span id="cb574-3"><a href="correct.html#cb574-3" aria-hidden="true"></a></span>
-<span id="cb574-4"><a href="correct.html#cb574-4" aria-hidden="true"></a><span class="kw">test_check</span>(<span class="st">&quot;creater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="correct.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(testthat)</span>
+<span id="cb574-2"><a href="correct.html#cb574-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(creater)</span>
+<span id="cb574-3"><a href="correct.html#cb574-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb574-4"><a href="correct.html#cb574-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test_check</span>(<span class="st">&quot;creater&quot;</span>)</span></code></pre></div>
 <p>I.e.,
 it loads the <code>testthat</code> library and our own package,
 then calls <code>test_check</code> to run tests.
 If we try to run our tests using:</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="correct.html#cb575-1" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="correct.html#cb575-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code></pre></div>
 <p>we get the message:</p>
 <pre class="text"><code>No tests: no files in /Users/merely/creater/tests/testthat match &#39;^test.*\.[rR]$&#39;</code></pre>
 <p>This is fair,
 since we haven’t yet created any tests.
 To do that,
 we run:</p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="correct.html#cb577-1" aria-hidden="true"></a>usethis<span class="op">::</span><span class="kw">use_test</span>(<span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="correct.html#cb577-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_test</span>(<span class="st">&quot;mean&quot;</span>)</span></code></pre></div>
 <pre class="text"><code>✔ Increasing &#39;testthat&#39; version to &#39;&gt;= 2.1.0&#39; in DESCRIPTION
 ✔ Writing &#39;tests/testthat/test-mean.R&#39;
 ● Modify &#39;tests/testthat/test-mean.R&#39;</code></pre>
@@ -761,11 +761,11 @@ such as <code>test-read-data.R</code> or <code>test-annual-analysis.R</code>.
 Note that we do <em>not</em> type the prefix <code>test-</code> in the call to <code>usethis::use_test</code>;
 <code>usethis</code> will insert that automatically.</p>
 <p>The newly-created file contains a single test case:</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="correct.html#cb579-1" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</span>
-<span id="cb579-2"><a href="correct.html#cb579-2" aria-hidden="true"></a>  <span class="kw">expect_equal</span>(<span class="dv">2</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">4</span>)</span>
-<span id="cb579-3"><a href="correct.html#cb579-3" aria-hidden="true"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="correct.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;multiplication works&quot;</span>, {</span>
+<span id="cb579-2"><a href="correct.html#cb579-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_equal</span>(<span class="dv">2</span> <span class="sc">*</span> <span class="dv">2</span>, <span class="dv">4</span>)</span>
+<span id="cb579-3"><a href="correct.html#cb579-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>We can run this with:</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="correct.html#cb580-1" aria-hidden="true"></a>devtools<span class="op">::</span><span class="kw">test</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="correct.html#cb580-1" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">test</span>()</span></code></pre></div>
 <pre class="text"><code>Loading creater
 Testing creater
 ✔ |  OK F W S | Context
@@ -789,15 +789,15 @@ there were no warnings,
 and no tests were skipped.</p>
 <p>Let’s re-open <code>tests/testthat/test-mean.R</code> and replace the test that R wrote for us
 with this code:</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="correct.html#cb582-1" aria-hidden="true"></a><span class="kw">context</span>(<span class="st">&quot;Computing the mean&quot;</span>)</span>
-<span id="cb582-2"><a href="correct.html#cb582-2" aria-hidden="true"></a></span>
-<span id="cb582-3"><a href="correct.html#cb582-3" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;the mean of an odd-length vector is correct&quot;</span>, {</span>
-<span id="cb582-4"><a href="correct.html#cb582-4" aria-hidden="true"></a>    <span class="kw">expect_identical</span>(<span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>), <span class="fl">2.0</span>)</span>
-<span id="cb582-5"><a href="correct.html#cb582-5" aria-hidden="true"></a>})</span>
-<span id="cb582-6"><a href="correct.html#cb582-6" aria-hidden="true"></a></span>
-<span id="cb582-7"><a href="correct.html#cb582-7" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;the mean of an even-length vector is correct&quot;</span>, {</span>
-<span id="cb582-8"><a href="correct.html#cb582-8" aria-hidden="true"></a>    <span class="kw">expect_identical</span>(<span class="kw">mean</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>), <span class="fl">2.0</span>)</span>
-<span id="cb582-9"><a href="correct.html#cb582-9" aria-hidden="true"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="correct.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">context</span>(<span class="st">&quot;Computing the mean&quot;</span>)</span>
+<span id="cb582-2"><a href="correct.html#cb582-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb582-3"><a href="correct.html#cb582-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;the mean of an odd-length vector is correct&quot;</span>, {</span>
+<span id="cb582-4"><a href="correct.html#cb582-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_identical</span>(<span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>), <span class="fl">2.0</span>)</span>
+<span id="cb582-5"><a href="correct.html#cb582-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb582-6"><a href="correct.html#cb582-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb582-7"><a href="correct.html#cb582-7" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;the mean of an even-length vector is correct&quot;</span>, {</span>
+<span id="cb582-8"><a href="correct.html#cb582-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_identical</span>(<span class="fu">mean</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>), <span class="fl">2.0</span>)</span>
+<span id="cb582-9"><a href="correct.html#cb582-9" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <pre class="text"><code>Loading creater
 Testing creater
 ✔ |  OK F W S | Context
@@ -842,36 +842,36 @@ so we often write helper functions to do this.
 For example,
 if we are testing functions that work on multiple dataframes in R,
 we might write a function like this:</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="correct.html#cb584-1" aria-hidden="true"></a>create_three_frames &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
-<span id="cb584-2"><a href="correct.html#cb584-2" aria-hidden="true"></a>    ones &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb584-3"><a href="correct.html#cb584-3" aria-hidden="true"></a>        <span class="op">~</span>odd, <span class="op">~</span>even,</span>
-<span id="cb584-4"><a href="correct.html#cb584-4" aria-hidden="true"></a>           <span class="dv">1</span>,     <span class="dv">2</span>,</span>
-<span id="cb584-5"><a href="correct.html#cb584-5" aria-hidden="true"></a>           <span class="dv">3</span>,     <span class="dv">4</span>)</span>
-<span id="cb584-6"><a href="correct.html#cb584-6" aria-hidden="true"></a>    tens &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb584-7"><a href="correct.html#cb584-7" aria-hidden="true"></a>        <span class="op">~</span>odd, <span class="op">~</span>even,</span>
-<span id="cb584-8"><a href="correct.html#cb584-8" aria-hidden="true"></a>          <span class="dv">10</span>,    <span class="dv">20</span>,</span>
-<span id="cb584-9"><a href="correct.html#cb584-9" aria-hidden="true"></a>          <span class="dv">30</span>,    <span class="dv">40</span>)</span>
-<span id="cb584-10"><a href="correct.html#cb584-10" aria-hidden="true"></a>    hundreds &lt;-<span class="st"> </span><span class="kw">tribble</span>(</span>
-<span id="cb584-11"><a href="correct.html#cb584-11" aria-hidden="true"></a>        <span class="op">~</span>odd, <span class="op">~</span>even,</span>
-<span id="cb584-12"><a href="correct.html#cb584-12" aria-hidden="true"></a>         <span class="dv">100</span>,   <span class="dv">200</span>,</span>
-<span id="cb584-13"><a href="correct.html#cb584-13" aria-hidden="true"></a>         <span class="dv">300</span>,   <span class="dv">400</span>)</span>
-<span id="cb584-14"><a href="correct.html#cb584-14" aria-hidden="true"></a>    <span class="kw">list</span>(<span class="dt">ones=</span>ones, <span class="dt">tens=</span>tens, <span class="dt">hundreds=</span>hundreds)</span>
-<span id="cb584-15"><a href="correct.html#cb584-15" aria-hidden="true"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="correct.html#cb584-1" aria-hidden="true" tabindex="-1"></a>create_three_frames <span class="ot">&lt;-</span> <span class="cf">function</span>() {</span>
+<span id="cb584-2"><a href="correct.html#cb584-2" aria-hidden="true" tabindex="-1"></a>    ones <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb584-3"><a href="correct.html#cb584-3" aria-hidden="true" tabindex="-1"></a>        <span class="sc">~</span>odd, <span class="sc">~</span>even,</span>
+<span id="cb584-4"><a href="correct.html#cb584-4" aria-hidden="true" tabindex="-1"></a>           <span class="dv">1</span>,     <span class="dv">2</span>,</span>
+<span id="cb584-5"><a href="correct.html#cb584-5" aria-hidden="true" tabindex="-1"></a>           <span class="dv">3</span>,     <span class="dv">4</span>)</span>
+<span id="cb584-6"><a href="correct.html#cb584-6" aria-hidden="true" tabindex="-1"></a>    tens <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb584-7"><a href="correct.html#cb584-7" aria-hidden="true" tabindex="-1"></a>        <span class="sc">~</span>odd, <span class="sc">~</span>even,</span>
+<span id="cb584-8"><a href="correct.html#cb584-8" aria-hidden="true" tabindex="-1"></a>          <span class="dv">10</span>,    <span class="dv">20</span>,</span>
+<span id="cb584-9"><a href="correct.html#cb584-9" aria-hidden="true" tabindex="-1"></a>          <span class="dv">30</span>,    <span class="dv">40</span>)</span>
+<span id="cb584-10"><a href="correct.html#cb584-10" aria-hidden="true" tabindex="-1"></a>    hundreds <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb584-11"><a href="correct.html#cb584-11" aria-hidden="true" tabindex="-1"></a>        <span class="sc">~</span>odd, <span class="sc">~</span>even,</span>
+<span id="cb584-12"><a href="correct.html#cb584-12" aria-hidden="true" tabindex="-1"></a>         <span class="dv">100</span>,   <span class="dv">200</span>,</span>
+<span id="cb584-13"><a href="correct.html#cb584-13" aria-hidden="true" tabindex="-1"></a>         <span class="dv">300</span>,   <span class="dv">400</span>)</span>
+<span id="cb584-14"><a href="correct.html#cb584-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">list</span>(<span class="at">ones=</span>ones, <span class="at">tens=</span>tens, <span class="at">hundreds=</span>hundreds)</span>
+<span id="cb584-15"><a href="correct.html#cb584-15" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>We could then use the helper (?) that function produces in many tests.
 Here,
 for example,
 we are using it to test a function called <code>columnize</code>:</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="correct.html#cb585-1" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;columnize combines columns by name with addition&quot;</span>, {</span>
-<span id="cb585-2"><a href="correct.html#cb585-2" aria-hidden="true"></a>    fixture &lt;-<span class="st"> </span><span class="kw">create_three_frames</span>()</span>
-<span id="cb585-3"><a href="correct.html#cb585-3" aria-hidden="true"></a>    result &lt;-<span class="st"> </span><span class="kw">columnize</span>(fixture, <span class="st">&#39;+&#39;</span>, odd)</span>
-<span id="cb585-4"><a href="correct.html#cb585-4" aria-hidden="true"></a>    <span class="kw">expect_equal</span>(result<span class="op">$</span>odd, <span class="kw">c</span>(<span class="dv">111</span>, <span class="dv">333</span>))</span>
-<span id="cb585-5"><a href="correct.html#cb585-5" aria-hidden="true"></a>})</span>
-<span id="cb585-6"><a href="correct.html#cb585-6" aria-hidden="true"></a></span>
-<span id="cb585-7"><a href="correct.html#cb585-7" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;columnize combines columns by name with multiplication&quot;</span>, {</span>
-<span id="cb585-8"><a href="correct.html#cb585-8" aria-hidden="true"></a>    fixture &lt;-<span class="st"> </span><span class="kw">create_three_frames</span>()</span>
-<span id="cb585-9"><a href="correct.html#cb585-9" aria-hidden="true"></a>    result &lt;-<span class="st"> </span><span class="kw">columnize</span>(fixture, <span class="st">&#39;*&#39;</span>, odd)</span>
-<span id="cb585-10"><a href="correct.html#cb585-10" aria-hidden="true"></a>    <span class="kw">expect_equal</span>(result<span class="op">$</span>odd, <span class="kw">c</span>(<span class="dv">1000</span>, <span class="dv">9000</span>))</span>
-<span id="cb585-11"><a href="correct.html#cb585-11" aria-hidden="true"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="correct.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;columnize combines columns by name with addition&quot;</span>, {</span>
+<span id="cb585-2"><a href="correct.html#cb585-2" aria-hidden="true" tabindex="-1"></a>    fixture <span class="ot">&lt;-</span> <span class="fu">create_three_frames</span>()</span>
+<span id="cb585-3"><a href="correct.html#cb585-3" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">columnize</span>(fixture, <span class="st">&#39;+&#39;</span>, odd)</span>
+<span id="cb585-4"><a href="correct.html#cb585-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_equal</span>(result<span class="sc">$</span>odd, <span class="fu">c</span>(<span class="dv">111</span>, <span class="dv">333</span>))</span>
+<span id="cb585-5"><a href="correct.html#cb585-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb585-6"><a href="correct.html#cb585-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb585-7"><a href="correct.html#cb585-7" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;columnize combines columns by name with multiplication&quot;</span>, {</span>
+<span id="cb585-8"><a href="correct.html#cb585-8" aria-hidden="true" tabindex="-1"></a>    fixture <span class="ot">&lt;-</span> <span class="fu">create_three_frames</span>()</span>
+<span id="cb585-9"><a href="correct.html#cb585-9" aria-hidden="true" tabindex="-1"></a>    result <span class="ot">&lt;-</span> <span class="fu">columnize</span>(fixture, <span class="st">&#39;*&#39;</span>, odd)</span>
+<span id="cb585-10"><a href="correct.html#cb585-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_equal</span>(result<span class="sc">$</span>odd, <span class="fu">c</span>(<span class="dv">1000</span>, <span class="dv">9000</span>))</span>
+<span id="cb585-11"><a href="correct.html#cb585-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Using helper functions to create fixtures like this
 reduces the <a href="glossary.html#cognitive-load">cognitive load</a> on whoever has to maintain the tests,
 since they only have to form a <a href="glossary.html#mental-model">mental model</a> of a few cases
@@ -909,9 +909,9 @@ which checks that a string matches a <a href="glossary.html#regular-expression">
 We can always replace these with <code>expect_true</code>,
 i.e.,
 use:</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="correct.html#cb586-1" aria-hidden="true"></a><span class="kw">expect_true</span>(<span class="kw">length</span>(result <span class="op">==</span><span class="st"> </span><span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="correct.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">expect_true</span>(<span class="fu">length</span>(result <span class="sc">==</span> <span class="dv">3</span>))</span></code></pre></div>
 <p>instead of:</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="correct.html#cb587-1" aria-hidden="true"></a><span class="kw">expect_length</span>(result, <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="correct.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">expect_length</span>(result, <span class="dv">3</span>)</span></code></pre></div>
 <p>but the latter makes our intention clearer.</p>
 </div>
 <div id="correct-failure" class="section level2" number="12.6">
@@ -927,16 +927,16 @@ is therefore just as important as testing that it runs correctly.</p>
 <p><strong>We Have the Data</strong></p>
 <p>The need to test error handling is not just folklore:
 in their study of failures in data-intensive applications,
-<span class="citation">Yuan et al. (<a href="references.html#ref-Yuan2014" role="doc-biblioref">2014</a>)</span> found that,
+<span class="citation"><a href="references.html#ref-Yuan2014" role="doc-biblioref">Yuan et al.</a> (<a href="references.html#ref-Yuan2014" role="doc-biblioref">2014</a>)</span> found that,
 “the majority of catastrophic failures could easily have been prevented
 by performing simple testing on error handling code—the last line of defense—even without
 an understanding of the software design.”</p>
 </blockquote>
 <p><code>testthat</code> provides specific functions to test for errors or warnings
 called <code>expect_error()</code> and <code>expect_warning()</code> respectively:</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="correct.html#cb588-1" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;text must not be empty&quot;</span>, {</span>
-<span id="cb588-2"><a href="correct.html#cb588-2" aria-hidden="true"></a>    <span class="kw">expect_error</span>(<span class="kw">count_words</span>(<span class="st">&quot;&quot;</span>))</span>
-<span id="cb588-3"><a href="correct.html#cb588-3" aria-hidden="true"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="correct.html#cb588-1" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;text must not be empty&quot;</span>, {</span>
+<span id="cb588-2"><a href="correct.html#cb588-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">expect_error</span>(<span class="fu">count_words</span>(<span class="st">&quot;&quot;</span>))</span>
+<span id="cb588-3"><a href="correct.html#cb588-3" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 </div>
 <div id="correct-coverage" class="section level2" number="12.7">
 <h2><span class="header-section-number">12.7</span> How can I tell whether my code has been tested or not?</h2>
@@ -947,31 +947,31 @@ loops or conditionals may make it difficult for us to figure out
 what is actually being executed.
 For example,
 take a few moments to read this function in R</p>
-<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="correct.html#cb589-1" aria-hidden="true"></a>first &lt;-<span class="st"> </span><span class="cf">function</span>(left, right) {</span>
-<span id="cb589-2"><a href="correct.html#cb589-2" aria-hidden="true"></a>  <span class="cf">if</span> (left <span class="op">&lt;</span><span class="st"> </span>right) {</span>
-<span id="cb589-3"><a href="correct.html#cb589-3" aria-hidden="true"></a>    tmp &lt;-<span class="st"> </span>left</span>
-<span id="cb589-4"><a href="correct.html#cb589-4" aria-hidden="true"></a>    left &lt;-<span class="st"> </span>right</span>
-<span id="cb589-5"><a href="correct.html#cb589-5" aria-hidden="true"></a>    right &lt;-<span class="st"> </span>tmp</span>
-<span id="cb589-6"><a href="correct.html#cb589-6" aria-hidden="true"></a>  }</span>
-<span id="cb589-7"><a href="correct.html#cb589-7" aria-hidden="true"></a></span>
-<span id="cb589-8"><a href="correct.html#cb589-8" aria-hidden="true"></a>  <span class="cf">while</span> (left <span class="op">&gt;</span><span class="st"> </span>right) {</span>
-<span id="cb589-9"><a href="correct.html#cb589-9" aria-hidden="true"></a>    value &lt;-<span class="st"> </span><span class="kw">second</span>(left, right)</span>
-<span id="cb589-10"><a href="correct.html#cb589-10" aria-hidden="true"></a>    left &lt;-<span class="st"> </span>right</span>
-<span id="cb589-11"><a href="correct.html#cb589-11" aria-hidden="true"></a>    right &lt;-<span class="st"> </span><span class="kw">as.integer</span>(right <span class="op">/</span><span class="st"> </span><span class="dv">2</span>)</span>
-<span id="cb589-12"><a href="correct.html#cb589-12" aria-hidden="true"></a>  }</span>
-<span id="cb589-13"><a href="correct.html#cb589-13" aria-hidden="true"></a></span>
-<span id="cb589-14"><a href="correct.html#cb589-14" aria-hidden="true"></a>  value</span>
-<span id="cb589-15"><a href="correct.html#cb589-15" aria-hidden="true"></a>}</span>
-<span id="cb589-16"><a href="correct.html#cb589-16" aria-hidden="true"></a></span>
-<span id="cb589-17"><a href="correct.html#cb589-17" aria-hidden="true"></a>second &lt;-<span class="st"> </span><span class="cf">function</span>(check, balance) {</span>
-<span id="cb589-18"><a href="correct.html#cb589-18" aria-hidden="true"></a>    <span class="cf">if</span> (check <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
-<span id="cb589-19"><a href="correct.html#cb589-19" aria-hidden="true"></a>        balance</span>
-<span id="cb589-20"><a href="correct.html#cb589-20" aria-hidden="true"></a>    } <span class="cf">else</span> {</span>
-<span id="cb589-21"><a href="correct.html#cb589-21" aria-hidden="true"></a>        <span class="dv">0</span></span>
-<span id="cb589-22"><a href="correct.html#cb589-22" aria-hidden="true"></a>    }</span>
-<span id="cb589-23"><a href="correct.html#cb589-23" aria-hidden="true"></a>}</span>
-<span id="cb589-24"><a href="correct.html#cb589-24" aria-hidden="true"></a></span>
-<span id="cb589-25"><a href="correct.html#cb589-25" aria-hidden="true"></a><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="kw">first</span>(<span class="dv">3</span>, <span class="dv">5</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="correct.html#cb589-1" aria-hidden="true" tabindex="-1"></a>first <span class="ot">&lt;-</span> <span class="cf">function</span>(left, right) {</span>
+<span id="cb589-2"><a href="correct.html#cb589-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (left <span class="sc">&lt;</span> right) {</span>
+<span id="cb589-3"><a href="correct.html#cb589-3" aria-hidden="true" tabindex="-1"></a>    tmp <span class="ot">&lt;-</span> left</span>
+<span id="cb589-4"><a href="correct.html#cb589-4" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> right</span>
+<span id="cb589-5"><a href="correct.html#cb589-5" aria-hidden="true" tabindex="-1"></a>    right <span class="ot">&lt;-</span> tmp</span>
+<span id="cb589-6"><a href="correct.html#cb589-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb589-7"><a href="correct.html#cb589-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-8"><a href="correct.html#cb589-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (left <span class="sc">&gt;</span> right) {</span>
+<span id="cb589-9"><a href="correct.html#cb589-9" aria-hidden="true" tabindex="-1"></a>    value <span class="ot">&lt;-</span> <span class="fu">second</span>(left, right)</span>
+<span id="cb589-10"><a href="correct.html#cb589-10" aria-hidden="true" tabindex="-1"></a>    left <span class="ot">&lt;-</span> right</span>
+<span id="cb589-11"><a href="correct.html#cb589-11" aria-hidden="true" tabindex="-1"></a>    right <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(right <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb589-12"><a href="correct.html#cb589-12" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb589-13"><a href="correct.html#cb589-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-14"><a href="correct.html#cb589-14" aria-hidden="true" tabindex="-1"></a>  value</span>
+<span id="cb589-15"><a href="correct.html#cb589-15" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb589-16"><a href="correct.html#cb589-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-17"><a href="correct.html#cb589-17" aria-hidden="true" tabindex="-1"></a>second <span class="ot">&lt;-</span> <span class="cf">function</span>(check, balance) {</span>
+<span id="cb589-18"><a href="correct.html#cb589-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (check <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb589-19"><a href="correct.html#cb589-19" aria-hidden="true" tabindex="-1"></a>        balance</span>
+<span id="cb589-20"><a href="correct.html#cb589-20" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb589-21"><a href="correct.html#cb589-21" aria-hidden="true" tabindex="-1"></a>        <span class="dv">0</span></span>
+<span id="cb589-22"><a href="correct.html#cb589-22" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb589-23"><a href="correct.html#cb589-23" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb589-24"><a href="correct.html#cb589-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb589-25"><a href="correct.html#cb589-25" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="fu">first</span>(<span class="dv">3</span>, <span class="dv">5</span>))</span></code></pre></div>
 <p>The only way to know which parts of these functions are and aren’t executed
 is to trace their execution a line at a time.
 The good news is that we don’t have to do this ourselves:
@@ -992,7 +992,7 @@ Figure 12.1: How Coverage Works
 <p>The <code>covr</code> package has several functions for checking coverage.
 For example,
 we can test the coverage of the tests for a package by running:</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="correct.html#cb590-1" aria-hidden="true"></a>covr<span class="op">::</span><span class="kw">package_coverage</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="correct.html#cb590-1" aria-hidden="true" tabindex="-1"></a>covr<span class="sc">::</span><span class="fu">package_coverage</span>()</span></code></pre></div>
 <p>This function outputs a list of all R files in the package
 with their corresponding percentage coverage,
 which is a good way to figure out what needs to be done next.</p>
@@ -1068,7 +1068,7 @@ instead of trying to uncover errors.</p></li>
 </ol>
 <p>These arguments are plausible.
 However,
-studies such as <span class="citation">Fucci et al. (<a href="references.html#ref-Fucc2016" role="doc-biblioref">2016</a>)</span> don’t support them:
+studies such as <span class="citation"><a href="references.html#ref-Fucc2016" role="doc-biblioref">Fucci et al.</a> (<a href="references.html#ref-Fucc2016" role="doc-biblioref">2016</a>)</span> don’t support them:
 in practice,
 writing tests first or last doesn’t appear to affect productivity.
 What <em>does</em> have an impact is working in small, interleaved increments,
@@ -1081,7 +1081,7 @@ each time they produce an intermediate or final result,
 they scan a table, create a chart, or inspect some summary statistics
 to see if everything looks OK.
 Their heuristics are usually easy to state,
-like “there shouldn’t be NAs at this point” or “the age range should be reasonable”,
+like “there shouldn’t be NAs at this point” or “the age range should be reasonable,”
 but applying those heuristics to a particular analysis always depends on
 their evolving insight into the data in question.</p>
 <p>By analogy with test-driven development,
@@ -1293,30 +1293,30 @@ Write functions to check your changes.</li>
 <p>Create a new test by running <code>usethis::use_test("simple-arithmetic")</code>.
 Copy the code below into the newly created test file and fill in the blanks
 so that it runs correctly.</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="correct.html#cb591-1" aria-hidden="true"></a><span class="kw">context</span>(<span class="st">&quot;Check simple calculations&quot;</span>)</span>
-<span id="cb591-2"><a href="correct.html#cb591-2" aria-hidden="true"></a></span>
-<span id="cb591-3"><a href="correct.html#cb591-3" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;plus and minus give correct outputs&quot;</span>, {</span>
-<span id="cb591-4"><a href="correct.html#cb591-4" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb591-5"><a href="correct.html#cb591-5" aria-hidden="true"></a>  <span class="kw">___</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">-1</span>)</span>
-<span id="cb591-6"><a href="correct.html#cb591-6" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(<span class="dv">1</span> <span class="op">+</span><span class="st"> </span><span class="ot">NA</span>, __)</span>
-<span id="cb591-7"><a href="correct.html#cb591-7" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(___ <span class="op">-</span><span class="st"> </span>___, <span class="ot">NA</span>)</span>
-<span id="cb591-8"><a href="correct.html#cb591-8" aria-hidden="true"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="correct.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">context</span>(<span class="st">&quot;Check simple calculations&quot;</span>)</span>
+<span id="cb591-2"><a href="correct.html#cb591-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb591-3"><a href="correct.html#cb591-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;plus and minus give correct outputs&quot;</span>, {</span>
+<span id="cb591-4"><a href="correct.html#cb591-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb591-5"><a href="correct.html#cb591-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span>, <span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb591-6"><a href="correct.html#cb591-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="cn">NA</span>, __)</span>
+<span id="cb591-7"><a href="correct.html#cb591-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(___ <span class="sc">-</span> ___, <span class="cn">NA</span>)</span>
+<span id="cb591-8"><a href="correct.html#cb591-8" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 </div>
 <div id="correct-ex-purpose" class="section level3" number="12.17.3">
 <h3><span class="header-section-number">12.17.3</span> Explain the purpose of tests</h3>
 <p>Based on the contents of the tests below,
 replace the blanks with appropriate <code>context()</code> and <code>test_that()</code> messages.</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="correct.html#cb592-1" aria-hidden="true"></a><span class="kw">context</span>(<span class="st">&quot;___&quot;</span>)</span>
-<span id="cb592-2"><a href="correct.html#cb592-2" aria-hidden="true"></a></span>
-<span id="cb592-3"><a href="correct.html#cb592-3" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;___&quot;</span>, {</span>
-<span id="cb592-4"><a href="correct.html#cb592-4" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(<span class="kw">sum</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="dv">3</span>)</span>
-<span id="cb592-5"><a href="correct.html#cb592-5" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(<span class="kw">sum</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">2</span>)), <span class="ot">NA</span>)</span>
-<span id="cb592-6"><a href="correct.html#cb592-6" aria-hidden="true"></a>})</span>
-<span id="cb592-7"><a href="correct.html#cb592-7" aria-hidden="true"></a></span>
-<span id="cb592-8"><a href="correct.html#cb592-8" aria-hidden="true"></a><span class="kw">test_that</span>(<span class="st">&quot;___&quot;</span>, {</span>
-<span id="cb592-9"><a href="correct.html#cb592-9" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(<span class="kw">mean</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="fl">1.5</span>)</span>
-<span id="cb592-10"><a href="correct.html#cb592-10" aria-hidden="true"></a>  <span class="kw">expect_identical</span>(<span class="kw">mean</span>(<span class="kw">c</span>(<span class="ot">NA</span>, <span class="dv">2</span>)), <span class="ot">NA</span>)</span>
-<span id="cb592-11"><a href="correct.html#cb592-11" aria-hidden="true"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="correct.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">context</span>(<span class="st">&quot;___&quot;</span>)</span>
+<span id="cb592-2"><a href="correct.html#cb592-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb592-3"><a href="correct.html#cb592-3" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;___&quot;</span>, {</span>
+<span id="cb592-4"><a href="correct.html#cb592-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(<span class="fu">sum</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="dv">3</span>)</span>
+<span id="cb592-5"><a href="correct.html#cb592-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(<span class="fu">sum</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>)), <span class="cn">NA</span>)</span>
+<span id="cb592-6"><a href="correct.html#cb592-6" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb592-7"><a href="correct.html#cb592-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb592-8"><a href="correct.html#cb592-8" aria-hidden="true" tabindex="-1"></a><span class="fu">test_that</span>(<span class="st">&quot;___&quot;</span>, {</span>
+<span id="cb592-9"><a href="correct.html#cb592-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(<span class="fu">mean</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)), <span class="fl">1.5</span>)</span>
+<span id="cb592-10"><a href="correct.html#cb592-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">expect_identical</span>(<span class="fu">mean</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>)), <span class="cn">NA</span>)</span>
+<span id="cb592-11"><a href="correct.html#cb592-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 </div>
 <div id="correct-ex-count-words" class="section level3" number="12.17.4">
 <h3><span class="header-section-number">12.17.4</span> Testing <code>count_words</code></h3>
