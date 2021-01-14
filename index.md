@@ -9,7 +9,7 @@ link-citations: yes
 github-repo: "merely-useful/r-rse"
 favicon: favicon.ico
 site: bookdown::bookdown_site
-date: "2020-12-03"
+date: "2021-01-14"
 lot: yes
 lof: yes
 ---
